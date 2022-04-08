@@ -1,0 +1,74 @@
+Group#1,Question text,Option A,Option B,Option C,Correct Answer
+ ,,,,,
+9,What is the tool to install python modules?,pip,pipe,pap,A
+9,What is the function to get user input?,input(),read(),getText(),A
+9,How do you add a module to python,add <file>,import <file>,mod <file>,B
+9,What kind of language is python?,Interpreted Language,Compiled Language,Rude Language,A
+9,What programming language is Python faster than?,C++,Java,none of the above,C
+9,What is the syntax for calling a method listed in a function with the nickname np?,method.function_name,function_name,np.function_name,C
+9,What is the origin behind the naming of Python?,The way the language compiles programs,Monty Python's flying circus,"The Snake, Python",B
+9,How does python determine different levels of code?,Indents,Brackets,Braces,A
+9,What is the output of the following: 'Hello' 'World' '!',Syntax error,Hello World !,HelloWorld!,C
+9,What conditionals does python allow to use an else statement?,"for, while, if only","for,while",if only,A
+7,What is used to seperate values in a print() statment?,+,",",-,B
+7,What function is used to generate a random number?,rand(),random(),number(),A
+7,What keyword is used to define a variable?,None,int,var,A
+7,What are the arguments that can come after for x in range (),(),"(Stop, Start)","(Start ,End, Incremental)",C
+7,What function is not apart of the OS module?,os.walk(),os.dump(),os.join(),B
+7,How many values can be assigned to a key in a dictionary?,1,2,5,A
+7,What exception type is highest in the hiearchy for common exceptions? ,FileNotFoundError,OSError,Exception,C
+7,What Module does the exit() function belong to?,sys module,csv module,pickle module,A
+7,Strings can be accessed with an index value like lists.,TRUE,FALSE,,A
+7,Strings are mutable and can have their data changed. ,TRUE,FALSE,,B
+6,What symbol is needed to denote the end of a line?,;,:,Neither,C
+6,"What is needed to cast an int, float, or double variable into a string?",string(),str(),String.(),B
+6,"In python, what data type could store a piece of data, and gives it a specific name?",Boolean,Variable,Function,B
+6,what is a function to display the output of a program in python?,cout,print,output,B
+6,what is the first index in a list,0,1,2,A
+6,what keyword is used to define a function ,def,function,fun,A
+6,"Whats is the start value in this range function : range(4, 12 , 2)",12,2,4,C
+6,"Whats is the step value in this range function : range(4, 12 , 2)",12,2,4,B
+6,A file that contains reusable code is called,function,module,namespace,B
+6,A local variable is defined ,inside a function,outside a function,inside main(),A
+5,What is the correct syntax for a statement that catches an exception?,"try, although","try, except","attempt, except",B
+5,What is the syntax for a tuplet statment,Tuplet = (item1; item2),"tuplet = (item1, item2)","tuplet = [item1, item2]",B
+5,What is second in the hierarchy for five common exceptions?,ValueError,Exception,OSError,C
+5,What is the complete syntax for a try statement?,"Try, Except, Finally","Try, although, conclude","Attempt, Except, Finally",A
+5,Which dictionary method returns all values in a dictionary as a sequence of tuples?,items,values,pop,B
+5,The syntax for the built-in type() function is______,type object,type(object),type{object},B
+5,what grouping symbol is used in the syntax for a dictionary,(),[],{},C
+5,"From the following list, what would temps[5] return: temps = [48.0, 30.5, 20.2, 100.0, 42.0]",100,IndexError,42,B
+5,What is the syntax to convert a value to a string value?,str(value),string(value),str[value],A
+5,What will return if an invalid key is inputed in a dictionary,KeyError,Error,Stops running code,A
+4,What is the correct extension for a Python file? ,.python,.py,.p,B
+4,What is the keyword for functions in Python?,Function,fun,def,C 
+4,What case can keywords be in Python?,Capitilized,Lower Case,Both,C
+4,What are the types of Functions in Python?,System and Custom,Built-in and User-Defined,User-Defined and System,B
+4,"What is the output of the following: print(math.pow(3,2))?",9.0,9,Neither,A
+4,Are identifiers in Python case-sensitive?,Yes,No,Sometimes,A
+4,Which of the following is an invalid name for a variable?,myStr,1stString,str,B
+4,"Which type of error results when code runs, but the result is not as expected? ",Syntax,Runtime,Logical,C
+4,Which of the following would not be allowed as a variable name? ,a,length,len,C
+4,What is a function defined inside a class? ,Method,Function,Module,A
+4,Which is a mathematical function in Python?,add,rhombus,sqrt,C
+3,Which of these is not a core data type?,Lists,Dictionary,Class,C
+3,"What data type is the object below ? L = [1, 23, ‘hello’, 1]",List,Dictionary,Array,A
+3,Which of the following function convert a string to a float in python?,"int(x [,base])","long(x [,base] )",float(x),C
+3,"Given a function that does not return any value, what value is shown when executed at the shell?",int,void,null/none ,C
+3,Which module in Python supports regular expressions?,regex,re,sys,B
+3,Which of the following is correct about Python?,It supports automatic garbage collection,"It can be easily integrated with C, C++, COM, ActiveX, CORBA, and Java",Both of the above,C
+3,Which function can be used on the file to display a dialog for saving a file?,Filename = savefilename(),Filename = asksavefilename(),Fielname = asksaveasfilename(),C
+3,Which type of Programming does Python support?,object-oriented programming,functional programming,all of the above,C
+3,Is Python case sensitive when dealing with identifiers?,no,yes,only in specific cases,A
+3,Who developed the Python language?,Guido van Rossum,Zim Den,Niene Stom,A
+3,In which year was the Python language developed?,1989,1995,1972,A
+1,Which of the following data types would you use to store the number 25.62?,str,int,float,C
+1,What data type must be used for 26.57?,Float,Double,Long,A
+1,"How many decimal points does the ""round"" function round to?",0,1,2,A
+1,An integer must be casted to a string to be printed (T/F),TRUE,FALSE,,TRUE
+1,How do you break out of a loop?,Break,Exit,MoveOn,A
+1,What is the representation of a specific value?,Static,Literal,Variable,B
+1,What library can PI be accessed with?,Calc,Math,Geometry,B
+1,The boolean operator that returns true if its single operand are true?,AND,NOT,OR,B
+1,What is the latest version of Python?,3.10.2,4.2.3,3.9.1,A
+1,When did the latest version of Python come out?,"February 2, 2021","February 1, 2022","October 4, 2021",C
