@@ -1,7 +1,7 @@
 # Python Final Project - Part 1
 # Elijah McClymonds, Mike Elias, Chad Green
-
-from time import perf_counter
+import csv
+import random
 
 
 def main():
@@ -21,11 +21,10 @@ def main():
             break
 
         # finishing
-        user_input = input("Do you want to quit or start again? (q/s): ").lower()
+        user_input = input("\n\nDo you want to quit or start again? (q/s): ").lower()
         if user_input == "q":
             break
         elif user_input == "s":
-            print("Restarting...")
             valid = False
             count = 0
         # exception for input?
@@ -77,9 +76,39 @@ def generate_questions():
 
 
 # mike man
-def display_question():
-    # check for input validation for answers
-    pass
+def take_quiz():
+    # using this section to generate questions for my own test purposes
+    with open("CPSC 236 TestBank - Sheet1.csv", "r") as file:
+        reader = csv.reader(file)
+        rows = list(reader)
+        quiz_questions = []
+        question_count = 0
+    for content in rows:
+        # we don't need the group number
+        content.pop(0)
+        #avoid adding first row
+        if content != rows[0] and question_count < 10:
+            random_question = random.randint(1, 72)
+            if not rows[random_question] in quiz_questions:
+                quiz_questions.append(rows[random_question])
+                question_count += 1
+    question_num = 1
+    score = 0
+    for value in quiz_questions:
+        print("Question "+str(question_num)+":")
+        print(value[0])
+        print("A: "+str(value[1]))
+        print("B: "+str(value[2]))
+        print("C: " + str(value[3]))
+        answer = input("\nWhich is the correct answer (a/b/c)?: ").upper()
+        if answer == value[4]:
+            print("Correct!\n")
+            score += 1
+        else:
+            print("That's incorrect!\n")
+        question_num += 1
+    print("\nFinal Score: "+str(score)+"/10")
+    # still need to check for input validation for answers
 
 
 # chad man dude bro

@@ -1,5 +1,4 @@
 Group#1,Question text,Option A,Option B,Option C,Correct Answer
- ,,,,,
 9,What is the tool to install python modules?,pip,pipe,pap,A
 9,What is the function to get user input?,input(),read(),getText(),A
 9,How do you add a module to python,add <file>,import <file>,mod <file>,B
