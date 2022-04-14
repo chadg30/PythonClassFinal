@@ -2,6 +2,7 @@
 # Elijah McClymonds, Mike Elias, Chad Green
 import csv
 import random
+from time import perf_counter
 
 
 def main():
@@ -19,6 +20,8 @@ def main():
         if count == 3:
             print("Too Many Login Attempts")
             break
+
+        take_quiz()
 
         # finishing
         user_input = input("\n\nDo you want to quit or start again? (q/s): ").lower()
@@ -77,6 +80,7 @@ def generate_questions():
 
 # mike man
 def take_quiz():
+    start = perf_counter()
     # using this section to generate questions for my own test purposes
     with open("CPSC 236 TestBank - Sheet1.csv", "r") as file:
         reader = csv.reader(file)
@@ -86,7 +90,7 @@ def take_quiz():
     for content in rows:
         # we don't need the group number
         content.pop(0)
-        #avoid adding first row
+        # avoid adding first row
         if content != rows[0] and question_count < 10:
             random_question = random.randint(1, 72)
             if not rows[random_question] in quiz_questions:
@@ -109,12 +113,19 @@ def take_quiz():
         question_num += 1
     print("\nFinal Score: "+str(score)+"/10")
     # still need to check for input validation for answers
+    stop = perf_counter()
+    seconds = stop - start
+    print("Time taken: " + conversion(seconds))
 
 
 # chad man dude bro
-def toggle_timer():
+def conversion(seconds):
     # toggle between start and stop timer
-    pass
+    seconds = seconds % (24 * 3600)
+    minutes = seconds // 60
+    seconds %= 60
+
+    return "%02d:%02d" % (minutes, seconds)
 
 
 # mike man
