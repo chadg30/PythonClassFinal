@@ -98,6 +98,7 @@ def take_quiz():
                 question_count += 1
     question_num = 1
     score = 0
+    valid_answers = ["A", "B", "C"]
     for value in quiz_questions:
         print("Question "+str(question_num)+":")
         print(value[0])
@@ -105,6 +106,11 @@ def take_quiz():
         print("B: "+str(value[2]))
         print("C: " + str(value[3]))
         answer = input("\nWhich is the correct answer (a/b/c)?: ").upper()
+        #validates answers (must be 'A', 'B', or 'C')
+        #also avoids numerical answers
+        while answer not in valid_answers:
+            print("Invalid answer. Try again.")
+            answer = input("\nWhich is the correct answer (a/b/c)?: ").upper()
         if answer == value[4]:
             print("Correct!\n")
             score += 1
@@ -112,7 +118,6 @@ def take_quiz():
             print("That's incorrect!\n")
         question_num += 1
     print("\nFinal Score: "+str(score)+"/10")
-    # still need to check for input validation for answers
     stop = perf_counter()
     seconds = stop - start
     print("Time taken: " + conversion(seconds))
@@ -129,8 +134,8 @@ def conversion(seconds):
 
 
 # mike man
-def record_data():
-    # write statistics to text file
+def record_data(student_id, firstname, lastname, score, elapsed_time, questions):
+    #write statistics to text file
     pass
 
 
