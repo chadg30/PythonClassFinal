@@ -2,10 +2,11 @@
 # Elijah McClymonds, Mike Elias, Chad Green
 import csv
 import random
-from time import perf_counter
+import time
 
 
 def main():
+
     print("Python Quiz")
     valid = False
     count = 0
@@ -21,7 +22,8 @@ def main():
             print("Too Many Login Attempts")
             break
 
-        take_quiz()
+        questions = generate_questions()
+        take_quiz(questions)
 
         # finishing
         user_input = input("\n\nDo you want to quit or start again? (q/s): ").lower()
@@ -75,52 +77,57 @@ def validate_data(first_name, last_name, student_id, valid):
 # elijah MidClymonds
 def generate_questions():
     # randomly pick 10 questions from csv file
-    pass
-
-
-# mike man
-def take_quiz():
-    start = perf_counter()
-    # using this section to generate questions for my own test purposes
     with open("CPSC 236 TestBank - Sheet1.csv", "r") as file:
         reader = csv.reader(file)
         rows = list(reader)
         quiz_questions = []
         question_count = 0
-    for content in rows:
-        # we don't need the group number
-        content.pop(0)
-        # avoid adding first row
-        if content != rows[0] and question_count < 10:
-            random_question = random.randint(1, 72)
-            if not rows[random_question] in quiz_questions:
-                quiz_questions.append(rows[random_question])
-                question_count += 1
+        for content in rows:
+            # we don't need the group number
+            content.pop(0)
+            # avoid adding first row
+            if content != rows[0] and question_count < 10:
+                random_question = random.randint(1, 72)
+                if not rows[random_question] in quiz_questions:
+                    quiz_questions.append(rows[random_question])
+                    question_count += 1
+    # using this section to generate questions for my own test purposes
+    return quiz_questions
+
+
+# mike man
+def take_quiz(quiz_questions):
+    start_time = time.time()
+    elapsed = 0
     question_num = 1
     score = 0
     valid_answers = ["A", "B", "C"]
     for value in quiz_questions:
-        print("Question "+str(question_num)+":")
-        print(value[0])
-        print("A: "+str(value[1]))
-        print("B: "+str(value[2]))
-        print("C: " + str(value[3]))
-        answer = input("\nWhich is the correct answer (a/b/c)?: ").upper()
-        #validates answers (must be 'A', 'B', or 'C')
-        #also avoids numerical answers
-        while answer not in valid_answers:
-            print("Invalid answer. Try again.")
+        if elapsed < 60*10:
+            print("Question " + str(question_num) + ":")
+            print(value[0])
+            print("A: " + str(value[1]))
+            print("B: " + str(value[2]))
+            print("C: " + str(value[3]))
             answer = input("\nWhich is the correct answer (a/b/c)?: ").upper()
-        if answer == value[4]:
-            print("Correct!\n")
-            score += 1
+            # validates answers (must be 'A', 'B', or 'C')
+            # also avoids numerical answers
+            while answer not in valid_answers:
+                print("Invalid answer. Try again.")
+                answer = input("\nWhich is the correct answer (a/b/c)?: ").upper()
+            if answer == value[4]:
+                print("Correct!\n")
+                score += 1
+            else:
+                print("That's incorrect!\n")
+            question_num += 1
+            elapsed = time.time() - start_time
         else:
-            print("That's incorrect!\n")
-        question_num += 1
+            print("You've run out of time")
+            break
+
     print("\nFinal Score: "+str(score)+"/10")
-    stop = perf_counter()
-    seconds = stop - start
-    print("Time taken: " + conversion(seconds))
+    print("Time taken: " + conversion(elapsed))
 
 
 # chad man dude bro
@@ -135,7 +142,7 @@ def conversion(seconds):
 
 # mike man
 def record_data(student_id, firstname, lastname, score, elapsed_time, questions):
-    #write statistics to text file
+    # write statistics to text file
     pass
 
 
