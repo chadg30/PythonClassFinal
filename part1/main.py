@@ -41,24 +41,16 @@ def validate_data(first_name, last_name, student_id, valid):
     # 3 attempts max to validate
     count = 0
 
-    if first_name.strip().isalpha():  # check if name is alpha
-        valid = True
-    else:
+    if not first_name.strip().isalpha():  # check if name is alpha
         print("Invalid Name Entered, Try Again")
         return False
-    if last_name.strip().isalpha():  # check if last name is alpha
-        valid = True
-    else:
+    if not last_name.strip().isalpha():  # check if last name is alpha
         print("Invalid Name Entered, Try Again")
         return False
-    if len(student_id) == 6:  # check student ID length
-        valid = True
-    else:
+    if not len(student_id) == 6:  # check student ID length
         print("Student ID incorrect length, Try Again")
         return False
-    if student_id[0] == 'A':  # check if student ID starts with A
-        valid = True
-    else:
+    if not student_id[0] == 'A':  # check if student ID starts with A
         print("Student ID incorrect, Try Again")
         return False
     if int(student_id[1:5].isdigit()):  # check if end of ID is numerical
