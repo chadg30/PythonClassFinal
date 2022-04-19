@@ -22,8 +22,8 @@ def main():
             print("Too Many Login Attempts")
             break
 
-        questions = generate_questions()
-        take_quiz(questions)
+        questions, num_questions = generate_questions()
+        take_quiz(questions, num_questions)
 
         # finishing
         user_input = input("\n\nDo you want to quit or start again? (q/s): ").lower()
@@ -74,21 +74,34 @@ def generate_questions():
         rows = list(reader)
         quiz_questions = []
         question_count = 0
+        while True:
+            try:
+                num_questions = int(input("How many questions? (10 or 20): "))
+                if not num_questions == 10 and not num_questions == 20:
+                    print("Incorrect question value.")
+                else:
+                    if num_questions == 10:
+                        print("Questions are worth 1 point each.")
+                    else:
+                        print("Questions are worth 0.5 point each.")
+                    break
+            except ValueError:
+                print("Must be an integer")
         for content in rows:
             # we don't need the group number
             content.pop(0)
             # avoid adding first row
-            if content != rows[0] and question_count < 10:
+            if content != rows[0] and question_count < num_questions:
                 random_question = random.randint(1, 72)
                 if not rows[random_question] in quiz_questions:
                     quiz_questions.append(rows[random_question])
                     question_count += 1
     # using this section to generate questions for my own test purposes
-    return quiz_questions
+    return quiz_questions, num_questions
 
 
 # mike man
-def take_quiz(quiz_questions):
+def take_quiz(quiz_questions, num_questions):
     start_time = time.time()
     elapsed = 0
     question_num = 1
@@ -118,7 +131,10 @@ def take_quiz(quiz_questions):
             print("You've run out of time")
             break
 
-    print("\nFinal Score: "+str(score)+"/10")
+    if num_questions == 10:
+        print("\nFinal Score: "+str(score)+"/10")
+    else:
+        print("\nFinal Score: %1.0f"+str(score*0.5)+"/10.0")
     print("Time taken: " + conversion(elapsed))
 
 
