@@ -1,0 +1,78 @@
+Student ID: A12345
+First Name: Mike
+Last Name: Elias
+Test Score: 6/10
+Time Taken: 00:05
+Questions:
+
+Strings are mutable and can have their data changed. 
+TRUE
+FALSE
+
+Answer: B
+
+What is the complete syntax for a try statement?
+Try, Except, Finally
+Try, although, conclude
+Attempt, Except, Finally
+Answer: A
+
+Which type of Programming does Python support?
+object-oriented programming
+functional programming
+all of the above
+Answer: C
+
+what is a function to display the output of a program in python?
+cout
+print
+output
+Answer: B
+
+How does python determine different levels of code?
+Indents
+Brackets
+Braces
+Answer: A
+
+What is the output of the following: 'Hello' 'World' '!'
+Syntax error
+Hello World !
+HelloWorld!
+Answer: C
+
+Are identifiers in Python case-sensitive?
+Yes
+No
+Sometimes
+Answer: A
+
+What keyword is used to define a variable?
+None
+int
+var
+Answer: A
+
+In which year was the Python language developed?
+1989
+1995
+1972
+Answer: A
+
+How many values can be assigned to a key in a dictionary?
+1
+2
+5
+Answer: A
+
+Student Answers: 
+1: A
+2: A
+3: A
+4: A
+5: A
+6: A
+7: A
+8: A
+9: A
+10: A

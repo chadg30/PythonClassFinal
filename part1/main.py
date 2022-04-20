@@ -3,31 +3,29 @@
 import csv
 import random
 import time
+import os
 
 
 def main():
     first_name = ''
     last_name = ''
     student_id = ''
-
     print("Python Quiz")
-    valid = False
-    count = 0
+    data_is_valid = False
+    num_attempts = 0
     while True:
         # get and validate user info, User gets 3 attempts
-        while not valid and count < 3:
+        while not data_is_valid and num_attempts < 3:
             first_name = input("\nEnter your First Name: ")
             last_name = input("Enter your Last Name: ")
             student_id = input("Enter your Student ID: ")
-            valid = validate_data(first_name, last_name, student_id, valid)
-            count += 1
-        if count == 3:
-            print("Too Many Login Attempts")
+            data_is_valid = validate_data(first_name, last_name, student_id, data_is_valid)
+            num_attempts += 1
+        if num_attempts == 3:
+            print("\nToo Many Login Attempts")
             break
-
         questions, num_questions = generate_questions()
         score, time_taken, answers = take_quiz(questions, num_questions)
-
         record_data(student_id, first_name, last_name, score, time_taken, questions, answers)
 
         # finishing
@@ -35,40 +33,46 @@ def main():
         if user_input == "q":
             break
         elif user_input == "s":
-            valid = False
-            count = 0
-        # exception for input?
+            clear_console()
+            data_is_valid = False
+            num_attempts = 0
     print("Bye!")
 
 
 # chad man dude bro
 def validate_data(first_name, last_name, student_id, valid):
-    # 3 attempts max to validate
-    count = 0
-
     if not first_name.strip().isalpha():  # check if name is alpha
-        print("Invalid Name Entered, Try Again")
-        return False
+        print("Invalid Name Entered, Try Again.")
+        valid = False
     if not last_name.strip().isalpha():  # check if last name is alpha
-        print("Invalid Name Entered, Try Again")
-        return False
+        print("Invalid Name Entered, Try Again.")
+        valid = False
     if not len(student_id) == 6:  # check student ID length
-        print("Student ID incorrect length, Try Again")
-        return False
+        print("Student ID incorrect length, Try Again.")
+        valid = False
     if not student_id[0] == 'A':  # check if student ID starts with A
-        print("Student ID incorrect, Try Again")
-        return False
+        print("Student ID incorrect, Try Again.")
+        valid = False
     if int(student_id[1:5].isdigit()):  # check if end of ID is numerical
         for char in student_id[1:5]:  # check if each digit in end of ID is between 1 and 9
             if 1 <= int(char) <= 9:
                 valid = True
             else:
                 print("Invalid Student ID, Try Again")
-                return False
+                valid = False
     else:
         print("Invalid Student ID, Try Again")
-
     return valid
+
+
+def clear_console():
+    print("Clearing screen...")
+    time.sleep(2)
+    print("\n" * 50)
+    if os.name == 'nt':
+        _ = os.system("cls")
+    else:
+        _ = os.system("clear")
 
 
 # elijah MidClymonds
