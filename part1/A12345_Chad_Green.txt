@@ -1,0 +1,78 @@
+Student ID: A12345
+First Name: Chad
+Last Name: Green
+Test Score: 4/10
+Time Taken: 00:11
+Questions:
+
+Which function can be used on the file to display a dialog for saving a file?
+Filename = savefilename()
+Filename = asksavefilename()
+Fielname = asksaveasfilename()
+Answer: C
+
+Which of the following is correct about Python?
+It supports automatic garbage collection
+It can be easily integrated with C, C++, COM, ActiveX, CORBA, and Java
+Both of the above
+Answer: C
+
+A local variable is defined 
+inside a function
+outside a function
+inside main()
+Answer: A
+
+What function is used to generate a random number?
+rand()
+random()
+number()
+Answer: A
+
+What is second in the hierarchy for five common exceptions?
+ValueError
+Exception
+OSError
+Answer: C
+
+What is needed to cast an int, float, or double variable into a string?
+string()
+str()
+String.()
+Answer: B
+
+Which of these is not a core data type?
+Lists
+Dictionary
+Class
+Answer: C
+
+what keyword is used to define a function 
+def
+function
+fun
+Answer: A
+
+Which module in Python supports regular expressions?
+regex
+re
+sys
+Answer: B
+
+What data type must be used for 26.57?
+Float
+Double
+Long
+Answer: A
+
+Student Answers: 
+1: A
+2: A
+3: A
+4: A
+5: A
+6: A
+7: A
+8: A
+9: A
+10: A
