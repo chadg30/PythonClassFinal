@@ -1,0 +1,88 @@
+Student ID:	A12345
+First Name:	Mike
+Last Name:	Elias
+Test Score:	3/10
+Time Taken:	00:02
+
+Questions:
+
+1: What conditionals does python allow to use an else statement?
+A) for, while, if only
+B) for,while
+C) if only
+Submitted Answer:	A
+Correct Answer:		A
+
+
+2: An integer must be casted to a string to be printed (T/F)
+A) TRUE
+B) FALSE
+C) 
+Submitted Answer:	A
+Correct Answer:		TRUE
+
+
+3: What is the syntax for a tuplet statment
+A) Tuplet = (item1; item2)
+B) tuplet = (item1, item2)
+C) tuplet = [item1, item2]
+Submitted Answer:	A
+Correct Answer:		B
+
+
+4: What is the function to get user input?
+A) input()
+B) read()
+C) getText()
+Submitted Answer:	A
+Correct Answer:		A
+
+
+5: What case can keywords be in Python?
+A) Capitilized
+B) Lower Case
+C) Both
+Submitted Answer:	A
+Correct Answer:		C
+
+
+6: How does python determine different levels of code?
+A) Indents
+B) Brackets
+C) Braces
+Submitted Answer:	A
+Correct Answer:		A
+
+
+7: Which function can be used on the file to display a dialog for saving a file?
+A) Filename = savefilename()
+B) Filename = asksavefilename()
+C) Fielname = asksaveasfilename()
+Submitted Answer:	A
+Correct Answer:		C
+
+
+8: Which of the following function convert a string to a float in python?
+A) int(x [,base])
+B) long(x [,base] )
+C) float(x)
+Submitted Answer:	A
+Correct Answer:		C
+
+
+9: In python, what data type could store a piece of data, and gives it a specific name?
+A) Boolean
+B) Variable
+C) Function
+Submitted Answer:	A
+Correct Answer:		B
+
+
+10: What are the arguments that can come after for x in range ()
+A) ()
+B) (Stop, Start)
+C) (Start ,End, Incremental)
+Submitted Answer:	A
+Correct Answer:		C
+
+
