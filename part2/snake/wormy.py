@@ -6,7 +6,6 @@
 import random, pygame, sys
 from pygame.locals import *
 
-FPS = 15
 WINDOWWIDTH = 640
 WINDOWHEIGHT = 480
 CELLSIZE = 20
@@ -55,9 +54,10 @@ def runGame():
                   {'x': startx - 2, 'y': starty}]
     direction = RIGHT
 
+
     # Start the apple in a random place.
     apple = getRandomLocation()
-
+    fps = 7  # starting speed of snake
     while True: # main game loop
         for event in pygame.event.get(): # event handling loop
             if event.type == QUIT:
@@ -84,6 +84,9 @@ def runGame():
         # check if worm has eaten an apply
         if wormCoords[HEAD]['x'] == apple['x'] and wormCoords[HEAD]['y'] == apple['y']:
             # don't remove worm's tail segment
+
+            if fps < 20:  # adjusts speed of snake until max is reached
+                fps += 0.5
             apple = getRandomLocation() # set a new apple somewhere
         else:
             del wormCoords[-1] # remove worm's tail segment
@@ -104,7 +107,7 @@ def runGame():
         drawApple(apple)
         drawScore(len(wormCoords) - 3)
         pygame.display.update()
-        FPSCLOCK.tick(FPS)
+        FPSCLOCK.tick(fps)
 
 def drawPressKeyMsg():
     pressKeySurf = BASICFONT.render('Press a key to play.', True, DARKGRAY)
@@ -150,7 +153,7 @@ def showStartScreen():
             pygame.event.get() # clear event queue
             return
         pygame.display.update()
-        FPSCLOCK.tick(FPS)
+        FPSCLOCK.tick(15)
         degrees1 += 3 # rotate by 3 degrees each frame
         degrees2 += 7 # rotate by 7 degrees each frame
 
