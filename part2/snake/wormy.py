@@ -7,7 +7,7 @@ import random, pygame, sys
 from pygame.locals import *
 
 WINDOWWIDTH = 640
-WINDOWHEIGHT = 480
+WINDOWHEIGHT = 500
 CELLSIZE = 20
 assert WINDOWWIDTH % CELLSIZE == 0, "Window width must be a multiple of cell size."
 assert WINDOWHEIGHT % CELLSIZE == 0, "Window height must be a multiple of cell size."
@@ -37,7 +37,7 @@ def main():
     FPSCLOCK = pygame.time.Clock()
     DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
     BASICFONT = pygame.font.Font('freesansbold.ttf', 18)
-    pygame.display.set_caption('Wormy')
+    pygame.display.set_caption('Snake')
 
     showStartScreen()
     while True:
@@ -75,7 +75,7 @@ def runGame():
                     terminate()
 
         # check if the worm has hit itself or the edge
-        if wormCoords[HEAD]['x'] == -1 or wormCoords[HEAD]['x'] == CELLWIDTH or wormCoords[HEAD]['y'] == -1 or wormCoords[HEAD]['y'] == CELLHEIGHT:
+        if wormCoords[HEAD]['x'] == -1 or wormCoords[HEAD]['x'] == CELLWIDTH or wormCoords[HEAD]['y'] == 1 or wormCoords[HEAD]['y'] == CELLHEIGHT:
             return # game over
         for wormBody in wormCoords[1:]:
             if wormBody['x'] == wormCoords[HEAD]['x'] and wormBody['y'] == wormCoords[HEAD]['y']:
@@ -105,7 +105,15 @@ def runGame():
         drawGrid()
         drawWorm(wormCoords)
         drawApple(apple)
-        drawScore(len(wormCoords) - 3)
+        with open("high_score.txt", "r") as file:
+            high_score = int(file.read())
+        score = len(wormCoords) - 3
+        if score > high_score:
+            high_score = score
+            with open("high_score.txt", "w") as file:
+                file.write(str(high_score))
+        drawScore(score)
+        drawHighScore(high_score)
         pygame.display.update()
         FPSCLOCK.tick(fps)
 
@@ -130,8 +138,8 @@ def checkForKeyPress():
 
 def showStartScreen():
     titleFont = pygame.font.Font('freesansbold.ttf', 100)
-    titleSurf1 = titleFont.render('Wormy!', True, WHITE, DARKGREEN)
-    titleSurf2 = titleFont.render('Wormy!', True, GREEN)
+    titleSurf1 = titleFont.render('Snake 2.0', True, WHITE, DARKGREEN)
+    titleSurf2 = titleFont.render('Snake 2.0', True, GREEN)
 
     degrees1 = 0
     degrees2 = 0
@@ -153,7 +161,7 @@ def showStartScreen():
             pygame.event.get() # clear event queue
             return
         pygame.display.update()
-        FPSCLOCK.tick(15)
+        FPSCLOCK.tick(20)
         degrees1 += 3 # rotate by 3 degrees each frame
         degrees2 += 7 # rotate by 7 degrees each frame
 
@@ -164,7 +172,7 @@ def terminate():
 
 
 def getRandomLocation():
-    return {'x': random.randint(0, CELLWIDTH - 1), 'y': random.randint(0, CELLHEIGHT - 1)}
+    return {'x': random.randint(0, CELLWIDTH - 1), 'y': random.randint(2, CELLHEIGHT - 1)}
 
 
 def showGameOverScreen():
@@ -195,6 +203,13 @@ def drawScore(score):
     DISPLAYSURF.blit(scoreSurf, scoreRect)
 
 
+def drawHighScore(highscore):
+    scoreSurf = BASICFONT.render('High Score: %s' % (highscore), True, WHITE)
+    scoreRect = scoreSurf.get_rect()
+    scoreRect.topleft = (WINDOWWIDTH - 600, 10)
+    DISPLAYSURF.blit(scoreSurf, scoreRect)
+
+
 def drawWorm(wormCoords):
     for coord in wormCoords:
         x = coord['x'] * CELLSIZE
@@ -214,8 +229,8 @@ def drawApple(coord):
 
 def drawGrid():
     for x in range(0, WINDOWWIDTH, CELLSIZE): # draw vertical lines
-        pygame.draw.line(DISPLAYSURF, DARKGRAY, (x, 0), (x, WINDOWHEIGHT))
-    for y in range(0, WINDOWHEIGHT, CELLSIZE): # draw horizontal lines
+        pygame.draw.line(DISPLAYSURF, DARKGRAY, (x, 40), (x, WINDOWHEIGHT))
+    for y in range(40, WINDOWHEIGHT, CELLSIZE): # draw horizontal lines
         pygame.draw.line(DISPLAYSURF, DARKGRAY, (0, y), (WINDOWWIDTH, y))
 
 
