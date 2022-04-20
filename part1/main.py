@@ -89,7 +89,7 @@ def clear_console():
         _ = os.system("clear")
 
 
-# code written by Elijah McClymonds
+# code written by Elijah McClymonds and Mike Elias
 def generate_questions():
     # read TestBank file for questions
     with open("CPSC 236 TestBank - Sheet1.csv", "r") as file:
@@ -118,35 +118,44 @@ def generate_questions():
     for content in rows:
         content.pop(0)  # skips first value in row (group number, not relevant to quiz)
         random_question = random.randint(0, 71)
+
+        # check if question is already in questions list and if the max questions has already been reached
         if not rows[random_question] in quiz_questions and len(quiz_questions) < num_questions:
             quiz_questions.append(rows[random_question])
             question_count += 1
     return quiz_questions, num_questions
 
 
-# mike man
+# code written by Mike Elias
 def take_quiz(quiz_questions, num_questions):
-    start_time = time.time()
+    start_time = time.time()  # start a timer to keep track of elapsed time
     elapsed = 0
-    question_num = 1
-    score = 0
-    valid_answers = ["A", "B", "C"]
-    student_answers = []
+    question_num = 1  # for displaying the question number to the console
+    score = 0  # user's score on the quiz
+    valid_answers = ["A", "B", "C"]  # valid answers for input when taking the quiz
+    student_answers = []  # keep track of student's responses
+
+    # display one question at a time
     for value in quiz_questions:
-        if elapsed < 60 * 10:
+        if elapsed < 60 * 10:  # if the elapsed time goes over 10 minutes, next question will not appear
             print("Question " + str(question_num) + ":")
-            print(value[0])
-            print("A: " + str(value[1]))
-            print("B: " + str(value[2]))
-            print("C: " + str(value[3]))
+            question = value[0]
+            answer_a = value[1]
+            answer_b = value[2]
+            answer_c = value[3]
+            correct_answer = value[4]
+            print(question)
+            print("A: " + str(answer_a))
+            print("B: " + str(answer_b))
+            print("C: " + str(answer_c))
             answer = input("\nWhich is the correct answer (a/b/c)?: ").upper()
-            # validates answers (must be 'A', 'B', or 'C')
-            # also avoids numerical answers
+
+            # validate answers given by user (can't be numerical and must be in the valid answers list)
             while answer not in valid_answers:
                 print("Invalid answer. Try again.")
                 answer = input("\nWhich is the correct answer (a/b/c)?: ").upper()
             student_answers.append(answer)
-            if answer == value[4]:
+            if answer == correct_answer:
                 print("Correct!\n")
                 score += 1
             else:
@@ -154,7 +163,7 @@ def take_quiz(quiz_questions, num_questions):
             question_num += 1
             elapsed = time.time() - start_time
         else:
-            print("You've run out of time")
+            print("You've run out of time. Quiz is ending.")
             break
 
     if num_questions == 10:
@@ -167,7 +176,7 @@ def take_quiz(quiz_questions, num_questions):
     return score, time_taken, student_answers
 
 
-# chad man dude bro
+# code written by Chad Green
 def conversion(seconds):
     # This function takes the time that it took the student to complete the quiz and
     # converts it from seconds to minutes and seconds
@@ -178,30 +187,33 @@ def conversion(seconds):
     return "%02d:%02d" % (minutes, seconds)
 
 
-# mike man
+# code written by Chad Green and Mike Elias
 def record_data(student_id, firstname, lastname, score, elapsed_time, questions, answers):
-    filename = student_id + "_" + firstname + "_" + lastname
+    filename = student_id + "_" + firstname + "_" + lastname  # creates format: A12345_Raed_Seetan.txt
     with open("%s.txt" % filename, "w") as file:
-        file.write("Student ID: " + student_id + "\n")
-        file.write("First Name: " + firstname + "\n")
-        file.write("Last Name: " + lastname + "\n")
-        file.write("Test Score: " + str(score) + "/10\n")
-        file.write("Time Taken: " + str(elapsed_time) + "\n")
-        file.write("Questions:\n")
-        for question in questions:
-            file.write("\n")
-            count = 0
-            for line in question:
-                if count == 4:
-                    file.write("Answer: " + str(line) + "\n")
-                else:
-                    file.write(str(line) + "\n")
-                    count += 1
-        file.write("\nStudent Answers: \n")
-        num = 1
-        for answer in answers:
-            file.write(str(num) + ": " + str(answer) + "\n")
-            num += 1
+        file.write("Student ID:\t" + student_id + "\n")
+        file.write("First Name:\t" + firstname + "\n")
+        file.write("Last Name:\t" + lastname + "\n")
+        file.write("Test Score:\t" + str(score) + "/10\n")
+        file.write("Time Taken:\t" + str(elapsed_time) + "\n")
+        file.write("\nQuestions:\n\n")
+        question_num = 1  # keep track of question number for writing purposes
+        for data in questions:
+            question = str(question_num)+": "+data[0]  # the question being asked
+            answer_a = "A) "+data[1]  # answer choice A
+            answer_b = "B) "+data[2]  # answer choice B
+            answer_c = "C) "+data[3]  # answer choice C
+            submitted_answer = answers[question_num-1]  # answer chosen by user
+            correct_answer = data[4]  # correct answer to question
+
+            # write the data to individual text file
+            file.write(question+"\n")
+            file.write(answer_a+"\n")
+            file.write(answer_b+"\n")
+            file.write(answer_c+"\n")
+            file.write("Submitted Answer:\t"+submitted_answer+"\n")
+            file.write("Correct Answer:\t\t"+correct_answer+("\n" * 3))
+            question_num += 1
 
 
 if __name__ == "__main__":
