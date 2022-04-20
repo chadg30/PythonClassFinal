@@ -1,60 +1,84 @@
 Student ID:	A12345
 First Name:	Mike
 Last Name:	Elias
-Test Score:	3/10
-Time Taken:	00:02
+Test Score:	3.5/10
+Time Taken:	00:07
 
 Questions:
 
-1: What conditionals does python allow to use an else statement?
-A) for, while, if only
-B) for,while
-C) if only
-Submitted Answer:	A
-Correct Answer:		A
-
-
-2: An integer must be casted to a string to be printed (T/F)
-A) TRUE
-B) FALSE
-C) 
-Submitted Answer:	A
-Correct Answer:		TRUE
-
-
-3: What is the syntax for a tuplet statment
-A) Tuplet = (item1; item2)
-B) tuplet = (item1, item2)
-C) tuplet = [item1, item2]
-Submitted Answer:	A
-Correct Answer:		B
-
-
-4: What is the function to get user input?
-A) input()
-B) read()
-C) getText()
-Submitted Answer:	A
-Correct Answer:		A
-
-
-5: What case can keywords be in Python?
-A) Capitilized
-B) Lower Case
-C) Both
+1: Which of the following is correct about Python?
+A) It supports automatic garbage collection
+B) It can be easily integrated with C, C++, COM, ActiveX, CORBA, and Java
+C) Both of the above
 Submitted Answer:	A
 Correct Answer:		C
 
 
-6: How does python determine different levels of code?
-A) Indents
-B) Brackets
-C) Braces
+2: The syntax for the built-in type() function is______
+A) type object
+B) type(object)
+C) type{object}
+Submitted Answer:	A
+Correct Answer:		B
+
+
+3: Strings can be accessed with an index value like lists.
+A) TRUE
+B) FALSE
+C) 
 Submitted Answer:	A
 Correct Answer:		A
 
 
-7: Which function can be used on the file to display a dialog for saving a file?
+4: What are the types of Functions in Python?
+A) System and Custom
+B) Built-in and User-Defined
+C) User-Defined and System
+Submitted Answer:	A
+Correct Answer:		B
+
+
+5: Which type of Programming does Python support?
+A) object-oriented programming
+B) functional programming
+C) all of the above
+Submitted Answer:	A
+Correct Answer:		C
+
+
+6: what is the first index in a list
+A) 0
+B) 1
+C) 2
+Submitted Answer:	A
+Correct Answer:		A
+
+
+7: What function is used to generate a random number?
+A) rand()
+B) random()
+C) number()
+Submitted Answer:	A
+Correct Answer:		A
+
+
+8: What exception type is highest in the hiearchy for common exceptions? 
+A) FileNotFoundError
+B) OSError
+C) Exception
+Submitted Answer:	A
+Correct Answer:		C
+
+
+9: The boolean operator that returns true if its single operand are true?
+A) AND
+B) NOT
+C) OR
+Submitted Answer:	A
+Correct Answer:		B
+
+
+10: Which function can be used on the file to display a dialog for saving a file?
 A) Filename = savefilename()
 B) Filename = asksavefilename()
 C) Fielname = asksaveasfilename()
@@ -62,26 +86,82 @@ Submitted Answer:	A
 Correct Answer:		C
 
 
-8: Which of the following function convert a string to a float in python?
-A) int(x [,base])
-B) long(x [,base] )
-C) float(x)
+11: what keyword is used to define a function 
+A) def
+B) function
+C) fun
+Submitted Answer:	A
+Correct Answer:		A
+
+
+12: What data type must be used for 26.57?
+A) Float
+B) Double
+C) Long
+Submitted Answer:	A
+Correct Answer:		A
+
+
+13: What are the arguments that can come after for x in range ()
+A) ()
+B) (Stop, Start)
+C) (Start ,End, Incremental)
 Submitted Answer:	A
 Correct Answer:		C
 
 
-9: In python, what data type could store a piece of data, and gives it a specific name?
-A) Boolean
-B) Variable
-C) Function
+14: An integer must be casted to a string to be printed (T/F)
+A) TRUE
+B) FALSE
+C) 
+Submitted Answer:	A
+Correct Answer:		TRUE
+
+
+15: What kind of language is python?
+A) Interpreted Language
+B) Compiled Language
+C) Rude Language
+Submitted Answer:	A
+Correct Answer:		A
+
+
+16: What programming language is Python faster than?
+A) C++
+B) Java
+C) none of the above
+Submitted Answer:	A
+Correct Answer:		C
+
+
+17: What is the keyword for functions in Python?
+A) Function
+B) fun
+C) def
+Submitted Answer:	A
+Correct Answer:		C 
+
+
+18: what is a function to display the output of a program in python?
+A) cout
+B) print
+C) output
 Submitted Answer:	A
 Correct Answer:		B
 
 
-10: What are the arguments that can come after for x in range ()
-A) ()
-B) (Stop, Start)
-C) (Start ,End, Incremental)
+19: How does python determine different levels of code?
+A) Indents
+B) Brackets
+C) Braces
+Submitted Answer:	A
+Correct Answer:		A
+
+
+20: Whats is the start value in this range function : range(4, 12 , 2)
+A) 12
+B) 2
+C) 4
 Submitted Answer:	A
 Correct Answer:		C
 

@@ -26,7 +26,10 @@ def main():
             last_name = input("Enter your Last Name: ")
             student_id = input("Enter your Student ID: ")
             data_is_valid = validate_data(first_name, last_name, student_id)
-            num_attempts += 1
+            if data_is_valid:
+                break
+            else:
+                num_attempts += 1
 
         # exit program if user does not enter data correctly in 3 attempts
         if num_attempts == 3:
@@ -169,7 +172,8 @@ def take_quiz(quiz_questions, num_questions):
     if num_questions == 10:
         print("\nFinal Score: " + str(score) + "/10")
     else:
-        print("\nFinal Score: %1.0f" + str(score * 0.5) + "/10.0")
+        score = score * 0.5
+        print("\nFinal Score: " + str(score) + "/10.0")
     time_taken = conversion(elapsed)
     print("Time taken: " + time_taken)
 
