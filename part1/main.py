@@ -190,7 +190,7 @@ def conversion(seconds):
 # code written by Chad Green and Mike Elias
 def record_data(student_id, firstname, lastname, score, elapsed_time, questions, answers):
     filename = student_id + "_" + firstname + "_" + lastname  # creates format: A12345_Raed_Seetan.txt
-    with open("%s.txt" % filename, "w") as file:
+    with open("responses/%s.txt" % filename, "w") as file:
         file.write("Student ID:\t" + student_id + "\n")
         file.write("First Name:\t" + firstname + "\n")
         file.write("Last Name:\t" + lastname + "\n")

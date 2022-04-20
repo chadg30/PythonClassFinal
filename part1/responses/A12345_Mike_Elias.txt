@@ -1,0 +1,88 @@
+Student ID:	A12345
+First Name:	Mike
+Last Name:	Elias
+Test Score:	5/10
+Time Taken:	00:03
+
+Questions:
+
+1: Strings can be accessed with an index value like lists.
+A) TRUE
+B) FALSE
+C) 
+Submitted Answer:	A
+Correct Answer:		A
+
+
+2: What is the syntax for a tuplet statment
+A) Tuplet = (item1; item2)
+B) tuplet = (item1, item2)
+C) tuplet = [item1, item2]
+Submitted Answer:	A
+Correct Answer:		B
+
+
+3: What keyword is used to define a variable?
+A) None
+B) int
+C) var
+Submitted Answer:	A
+Correct Answer:		A
+
+
+4: Whats is the start value in this range function : range(4, 12 , 2)
+A) 12
+B) 2
+C) 4
+Submitted Answer:	A
+Correct Answer:		C
+
+
+5: What is the syntax for calling a method listed in a function with the nickname np?
+A) method.function_name
+B) function_name
+C) np.function_name
+Submitted Answer:	A
+Correct Answer:		C
+
+
+6: From the following list, what would temps[5] return: temps = [48.0, 30.5, 20.2, 100.0, 42.0]
+A) 100
+B) IndexError
+C) 42
+Submitted Answer:	A
+Correct Answer:		B
+
+
+7: What is the output of the following: print(math.pow(3,2))?
+A) 9.0
+B) 9
+C) Neither
+Submitted Answer:	A
+Correct Answer:		A
+
+
+8: What data type is the object below ? L = [1, 23, ‘hello’, 1]
+A) List
+B) Dictionary
+C) Array
+Submitted Answer:	A
+Correct Answer:		A
+
+
+9: In which year was the Python language developed?
+A) 1989
+B) 1995
+C) 1972
+Submitted Answer:	A
+Correct Answer:		A
+
+
+10: what is a function to display the output of a program in python?
+A) cout
+B) print
+C) output
+Submitted Answer:	A
+Correct Answer:		B
+
+
