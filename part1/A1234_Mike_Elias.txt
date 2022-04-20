@@ -1,0 +1,78 @@
+Student ID: A1234
+First Name: Mike
+Last Name: Elias
+Test Score: 1/10
+Time Taken: 00:07
+Questions:
+
+Whats is the start value in this range function : range(4, 12 , 2)
+12
+2
+4
+Answer: C
+
+What is the syntax for a tuplet statment
+Tuplet = (item1; item2)
+tuplet = (item1, item2)
+tuplet = [item1, item2]
+Answer: B
+
+An integer must be casted to a string to be printed (T/F)
+TRUE
+FALSE
+
+Answer: TRUE
+
+Which of the following function convert a string to a float in python?
+int(x [,base])
+long(x [,base] )
+float(x)
+Answer: C
+
+What function is used to generate a random number?
+rand()
+random()
+number()
+Answer: A
+
+Which module in Python supports regular expressions?
+regex
+re
+sys
+Answer: B
+
+What exception type is highest in the hiearchy for common exceptions? 
+FileNotFoundError
+OSError
+Exception
+Answer: C
+
+Which type of error results when code runs, but the result is not as expected? 
+Syntax
+Runtime
+Logical
+Answer: C
+
+Which dictionary method returns all values in a dictionary as a sequence of tuples?
+items
+values
+pop
+Answer: B
+
+Which type of Programming does Python support?
+object-oriented programming
+functional programming
+all of the above
+Answer: C
+
+Student Answers: 
+1: A
+2: A
+3: A
+4: A
+5: A
+6: A
+7: A
+8: A
+9: A
+10: A
