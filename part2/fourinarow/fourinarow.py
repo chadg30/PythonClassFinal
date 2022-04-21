@@ -30,14 +30,14 @@ TEXTCOLOR = WHITE
 RED = 'red'
 BLACK = 'black'
 EMPTY = None
-HUMAN = 'human'
-HUMAN2 = 'human2'
+RED = 'human'
+BLACK = 'BLACK'
 
 
 def main():
     global FPSCLOCK, DISPLAYSURF, REDPILERECT, BLACKPILERECT, REDTOKENIMG
-    global BLACKTOKENIMG, BOARDIMG, ARROWIMG, ARROWRECT, HUMANWINNERIMG
-    global COMPUTERWINNERIMG, WINNERRECT, TIEWINNERIMG
+    global BLACKTOKENIMG, BOARDIMG, ARROWIMG, ARROWRECT, HUMANWINNERIMG, LEFTARROW, RIGHTARROW
+    global REDWINNER,BLACKWINNER, TIEWINNERIMG
 
     pygame.init()
     FPSCLOCK = pygame.time.Clock()
@@ -52,60 +52,50 @@ def main():
     BLACKTOKENIMG = pygame.transform.smoothscale(BLACKTOKENIMG, (SPACESIZE, SPACESIZE))
     BOARDIMG = pygame.image.load('4row_board.png')
     BOARDIMG = pygame.transform.smoothscale(BOARDIMG, (SPACESIZE, SPACESIZE))
-
-    HUMANWINNERIMG = pygame.image.load('4row_humanwinner.png')
-    COMPUTERWINNERIMG = pygame.image.load('4row_computerwinner.png')
+    RIGHTARROW = pygame.image.load("right.png")
+    RIGHTARROW = pygame.transform.scale(RIGHTARROW, (50, 50))
+    LEFTARROW = pygame.image.load("left.png")
+    LEFTARROW = pygame.transform.scale(LEFTARROW, (50, 50))
+    REDWINNER = pygame.image.load('red_winner.png')
+    REDWINNER = pygame.transform.scale(REDWINNER, (300, 300))
+    BLACKWINNER = pygame.image.load('black_winner.png')
+    BLACKWINNER = pygame.transform.scale(BLACKWINNER, (300, 300))
     TIEWINNERIMG = pygame.image.load('4row_tie.png')
-    WINNERRECT = HUMANWINNERIMG.get_rect()
-    WINNERRECT.center = (int(WINDOWWIDTH / 2), int(WINDOWHEIGHT / 2))
 
     ARROWIMG = pygame.image.load('4row_arrow.png')
     ARROWRECT = ARROWIMG.get_rect()
     ARROWRECT.left = REDPILERECT.right + 10
     ARROWRECT.centery = REDPILERECT.centery
 
-    isFirstGame = True
 
     while True:
-        runGame(isFirstGame)
-        isFirstGame = False
+        runGame()
 
 
-def runGame(isFirstGame):
-    if isFirstGame:
-        # Let the computer go first on the first game, so the player
-        # can see how the tokens are dragged from the token piles.
-        turn = HUMAN2
-        showHelp = True
+def runGame():
+    if random.randint(0, 1) == 0:
+        turn = BLACK  # black goes first
     else:
-        # Randomly choose who goes first.
-        if random.randint(0, 1) == 0:
-            turn = HUMAN2
-        else:
-            turn = HUMAN
-        showHelp = False
+        turn = RED  # red goes first
 
     # Set up a blank board data structure.
     mainBoard = getNewBoard()
 
-    while True: # main game loop
-        if turn == HUMAN:
-            # Human player's turn.
-            getHumanMove(mainBoard, showHelp)
-            if showHelp:
-                # turn off help arrow after the first move
-                showHelp = False
+    while True:  # main game loop
+        if turn == RED:
+            # RED player's turn.
+            getHumanMove(mainBoard)
             if isWinner(mainBoard, RED):
-                winnerImg = HUMANWINNERIMG
+                winnerImg = REDWINNER
                 break
-            turn = HUMAN2 # switch to other player's turn
+            turn = BLACK # switch to other player's turn
         else:
             # Computer player's turn.
             getHumanMove2(mainBoard)
             if isWinner(mainBoard, BLACK):
-                winnerImg = COMPUTERWINNERIMG
+                winnerImg = BLACKWINNER
                 break
-            turn = HUMAN # switch to other player's turn
+            turn = RED # switch to other player's turn
 
         if isBoardFull(mainBoard):
             # A completely filled board means it's a tie.
@@ -115,7 +105,7 @@ def runGame(isFirstGame):
     while True:
         # Keep looping until player clicks the mouse or quits.
         drawBoard(mainBoard)
-        DISPLAYSURF.blit(winnerImg, WINNERRECT)
+        DISPLAYSURF.blit(winnerImg, (170, 90))
         pygame.display.update()
         FPSCLOCK.tick()
         for event in pygame.event.get(): # event handling loop
@@ -134,7 +124,6 @@ def makeMove(board, player, column):
 
 def drawBoard(board, extraToken=None):
     DISPLAYSURF.fill(BGCOLOR)
-
     # draw tokens
     spaceRect = pygame.Rect(0, 0, SPACESIZE, SPACESIZE)
     for x in range(BOARDWIDTH):
@@ -170,7 +159,8 @@ def getNewBoard():
     return board
 
 
-def getHumanMove(board, isFirstMove):
+
+def getHumanMove(board):
     draggingToken = False
     tokenx, tokeny = None, None
     while True:
@@ -202,12 +192,9 @@ def getHumanMove(board, isFirstMove):
             drawBoard(board, {'x':tokenx - int(SPACESIZE / 2), 'y':tokeny - int(SPACESIZE / 2), 'color':RED})
         else:
             drawBoard(board)
-
-        if isFirstMove:
-            # Show the help arrow for the player's first move.
-            DISPLAYSURF.blit(ARROWIMG, ARROWRECT)
-
+        DISPLAYSURF.blit(LEFTARROW, (90, 405))
         pygame.display.update()
+
         FPSCLOCK.tick()
 
 
@@ -244,6 +231,7 @@ def getHumanMove2(board):
         else:
             drawBoard(board)
 
+        DISPLAYSURF.blit(RIGHTARROW, (500, 405))
         pygame.display.update()
         FPSCLOCK.tick()
 
@@ -263,86 +251,6 @@ def animateDroppingToken(board, column, color):
         drawBoard(board, {'x':x, 'y':y, 'color':color})
         pygame.display.update()
         FPSCLOCK.tick()
-
-
-def animateComputerMoving(board, column):
-    x = BLACKPILERECT.left
-    y = BLACKPILERECT.top
-    speed = 1.0
-    # moving the black tile up
-    while y > (YMARGIN - SPACESIZE):
-        y -= int(speed)
-        speed += 0.5
-        drawBoard(board, {'x':x, 'y':y, 'color':BLACK})
-        pygame.display.update()
-        FPSCLOCK.tick()
-    # moving the black tile over
-    y = YMARGIN - SPACESIZE
-    speed = 1.0
-    while x > (XMARGIN + column * SPACESIZE):
-        x -= int(speed)
-        speed += 0.5
-        drawBoard(board, {'x':x, 'y':y, 'color':BLACK})
-        pygame.display.update()
-        FPSCLOCK.tick()
-    # dropping the black tile
-    animateDroppingToken(board, column, BLACK)
-
-
-def getComputerMove(board):
-    potentialMoves = getPotentialMoves(board, BLACK, DIFFICULTY)
-    # get the best fitness from the potential moves
-    bestMoveFitness = -1
-    for i in range(BOARDWIDTH):
-        if potentialMoves[i] > bestMoveFitness and isValidMove(board, i):
-            bestMoveFitness = potentialMoves[i]
-    # find all potential moves that have this best fitness
-    bestMoves = []
-    for i in range(len(potentialMoves)):
-        if potentialMoves[i] == bestMoveFitness and isValidMove(board, i):
-            bestMoves.append(i)
-    return random.choice(bestMoves)
-
-
-def getPotentialMoves(board, tile, lookAhead):
-    if lookAhead == 0 or isBoardFull(board):
-        return [0] * BOARDWIDTH
-
-    if tile == RED:
-        enemyTile = BLACK
-    else:
-        enemyTile = RED
-
-    # Figure out the best move to make.
-    potentialMoves = [0] * BOARDWIDTH
-    for firstMove in range(BOARDWIDTH):
-        dupeBoard = copy.deepcopy(board)
-        if not isValidMove(dupeBoard, firstMove):
-            continue
-        makeMove(dupeBoard, tile, firstMove)
-        if isWinner(dupeBoard, tile):
-            # a winning move automatically gets a perfect fitness
-            potentialMoves[firstMove] = 1
-            break # don't bother calculating other moves
-        else:
-            # do other player's counter moves and determine best one
-            if isBoardFull(dupeBoard):
-                potentialMoves[firstMove] = 0
-            else:
-                for counterMove in range(BOARDWIDTH):
-                    dupeBoard2 = copy.deepcopy(dupeBoard)
-                    if not isValidMove(dupeBoard2, counterMove):
-                        continue
-                    makeMove(dupeBoard2, enemyTile, counterMove)
-                    if isWinner(dupeBoard2, enemyTile):
-                        # a losing move automatically gets the worst fitness
-                        potentialMoves[firstMove] = -1
-                        break
-                    else:
-                        # do the recursive call to getPotentialMoves()
-                        results = getPotentialMoves(dupeBoard2, tile, lookAhead - 1)
-                        potentialMoves[firstMove] += (sum(results) / BOARDWIDTH) / BOARDWIDTH
-    return potentialMoves
 
 
 def getLowestEmptySpace(board, column):
