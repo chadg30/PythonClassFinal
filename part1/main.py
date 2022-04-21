@@ -7,6 +7,11 @@ import os
 
 
 def main():
+    """
+    main controls the overall operation of the program.
+    main does not accept any arguments.
+    :return: none
+    """
     # initializing data
     first_name = ''
     last_name = ''
@@ -60,6 +65,13 @@ def main():
 
 # code written by Chad Green
 def validate_data(first_name, last_name, student_id):
+    """
+    validate_data checks the user input to make sure the name and student ID are valid.
+    :param first_name: first name of the user
+    :param last_name: last name of the user
+    :param student_id: student ID of the user
+    :return: True or False: depends on if the data is valid or not
+    """
     if not first_name.strip().isalpha():  # check if name is alpha
         print("Invalid Name Entered, Try Again.")
         return False
@@ -83,6 +95,11 @@ def validate_data(first_name, last_name, student_id):
 
 # code written by Mike Elias
 def clear_console():
+    """
+    clear_console simulates clearing the python console.
+    clear_console does not accept any arguments.
+    :return: none
+    """
     print("Clearing screen...")
     time.sleep(2)  # waits 2 seconds before proceeding to illustrate clearing process
     print("\n" * 50)
@@ -94,6 +111,13 @@ def clear_console():
 
 # code written by Elijah McClymonds and Mike Elias
 def generate_questions():
+    """
+    generate_questions pulls either 10 or 20 random questions from the TestBank csv file.
+    These questions are then assigned to an list to be accessed during quiz-taking.
+    generate_questions does not accept any arguments.
+    :return: quiz_questions: number of questions the user selected (10 or 20)
+    :return: num_questions: the number of questions the user selected (10 or 20)
+    """
     # read TestBank file for questions
     with open("CPSC 236 TestBank - Sheet1.csv", "r") as file:
         reader = csv.reader(file)
@@ -131,6 +155,14 @@ def generate_questions():
 
 # code written by Mike Elias
 def take_quiz(quiz_questions, num_questions):
+    """
+    take_quiz simulates the quiz by displaying one question at a time and allows the user to select a response.
+    :param quiz_questions: the questions being used for the quiz
+    :param num_questions: the number of questions in the quiz
+    :return: score: the score recieved
+    :return: time_taken: time it took to complete the quiz
+    :return: student_answers: list of responses recorded by the user
+    """
     start_time = time.time()  # start a timer to keep track of elapsed time
     elapsed = 0
     question_num = 1  # for displaying the question number to the console
@@ -182,6 +214,11 @@ def take_quiz(quiz_questions, num_questions):
 
 # code written by Chad Green
 def conversion(seconds):
+    """
+    conversion converts time into a human-readable format.
+    :param seconds: elapsed time in seconds
+    :return: "%02d:%02d" % (minutes, seconds): converts the time to minutes and seconds
+    """
     # This function takes the time that it took the student to complete the quiz and
     # converts it from seconds to minutes and seconds
     seconds = seconds % (24 * 3600)
@@ -193,6 +230,17 @@ def conversion(seconds):
 
 # code written by Chad Green and Mike Elias
 def record_data(student_id, firstname, lastname, score, elapsed_time, questions, answers):
+    """
+    record_data takes the information from the quiz and records it into a text file for each individual student.
+    :param student_id: ID of the student
+    :param firstname: first name of the student
+    :param lastname: last name of the student
+    :param score: score on the quiz
+    :param elapsed_time: time taken for the quiz
+    :param questions: questions asked during the quiz
+    :param answers: answers recorded by the student
+    :return: none
+    """
     filename = student_id + "_" + firstname + "_" + lastname  # creates format: A12345_Raed_Seetan.txt
     with open("responses/%s.txt" % filename, "w") as file:
         file.write("Student ID:\t" + student_id + "\n")
