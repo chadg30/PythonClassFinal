@@ -31,7 +31,7 @@ RED = 'red'
 BLACK = 'black'
 EMPTY = None
 HUMAN = 'human'
-COMPUTER = 'computer'
+HUMAN2 = 'human2'
 
 
 def main():
@@ -75,12 +75,12 @@ def runGame(isFirstGame):
     if isFirstGame:
         # Let the computer go first on the first game, so the player
         # can see how the tokens are dragged from the token piles.
-        turn = COMPUTER
+        turn = HUMAN2
         showHelp = True
     else:
         # Randomly choose who goes first.
         if random.randint(0, 1) == 0:
-            turn = COMPUTER
+            turn = HUMAN2
         else:
             turn = HUMAN
         showHelp = False
@@ -98,12 +98,10 @@ def runGame(isFirstGame):
             if isWinner(mainBoard, RED):
                 winnerImg = HUMANWINNERIMG
                 break
-            turn = COMPUTER # switch to other player's turn
+            turn = HUMAN2 # switch to other player's turn
         else:
             # Computer player's turn.
-            column = getComputerMove(mainBoard)
-            animateComputerMoving(mainBoard, column)
-            makeMove(mainBoard, BLACK, column)
+            getHumanMove2(mainBoard)
             if isWinner(mainBoard, BLACK):
                 winnerImg = COMPUTERWINNERIMG
                 break
@@ -208,6 +206,43 @@ def getHumanMove(board, isFirstMove):
         if isFirstMove:
             # Show the help arrow for the player's first move.
             DISPLAYSURF.blit(ARROWIMG, ARROWRECT)
+
+        pygame.display.update()
+        FPSCLOCK.tick()
+
+
+def getHumanMove2(board):
+    draggingToken = False
+    tokenx, tokeny = None, None
+    while True:
+        for event in pygame.event.get(): # event handling loop
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == MOUSEBUTTONDOWN and not draggingToken and BLACKPILERECT.collidepoint(event.pos):
+                # start of dragging on red token pile.
+                draggingToken = True
+                tokenx, tokeny = event.pos
+            elif event.type == MOUSEMOTION and draggingToken:
+                # update the position of the red token being dragged
+                tokenx, tokeny = event.pos
+            elif event.type == MOUSEBUTTONUP and draggingToken:
+                # let go of the token being dragged
+                if tokeny < YMARGIN and tokenx > XMARGIN and tokenx < WINDOWWIDTH - XMARGIN:
+                    # let go at the top of the screen.
+                    column = int((tokenx - XMARGIN) / SPACESIZE)
+                    if isValidMove(board, column):
+                        animateDroppingToken(board, column, BLACK)
+                        board[column][getLowestEmptySpace(board, column)] = BLACK
+                        drawBoard(board)
+                        pygame.display.update()
+                        return
+                tokenx, tokeny = None, None
+                draggingToken = False
+        if tokenx != None and tokeny != None:
+            drawBoard(board, {'x':tokenx - int(SPACESIZE / 2), 'y':tokeny - int(SPACESIZE / 2), 'color': BLACK})
+        else:
+            drawBoard(board)
 
         pygame.display.update()
         FPSCLOCK.tick()
